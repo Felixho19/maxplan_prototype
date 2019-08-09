@@ -108,6 +108,6 @@ class Test(Resource):
 api.add_resource(Test, '/test')
 
 # Azure Run (Uncomment one of them)
-app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
+#app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
 # Local Run
-#app.run()
+app.run()
