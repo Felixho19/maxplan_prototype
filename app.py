@@ -88,11 +88,15 @@ def page_forbidden(error):
     return render_template('error.html'), 403
 
 
+'''
+Restful API handler
+'''
+# Request data configuration
 data_parser = RequestParser()
 data_parser.add_argument('user_msg', type=str, required=True, location='json')
 
-
-class Answer(Resource):
+# POST /api/v1/test
+class Test(Resource):
     def post(self):
         try:
             args = data_parser.parse_args()
@@ -101,25 +105,7 @@ class Answer(Resource):
         except Exception as e:
             return {'state': False, 'msg': e}, 204
 
-class Question(Resource):
-    def get(self):
-        try:
-            return { 'state': True, 'question': "question"}, 200
-        except Exception as e:
-            return {'state': False, 'msg': e}, 204
-
-
-class AutoQnA(Resource):
-    def get(self):
-        try:
-            return { 'state': True, 'question': "question", 'next_answer': "model_answers"}, 200
-        except Exception as e:
-            return {'state': False, 'msg': e}, 204
-
-
-api.add_resource(Answer, '/answer')
-api.add_resource(Question, '/question')
-api.add_resource(AutoQnA, '/auto')
+api.add_resource(Test, '/test')
 
 # Azure Run (Uncomment one of them)
 app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
