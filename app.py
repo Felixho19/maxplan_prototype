@@ -121,5 +121,7 @@ api.add_resource(Answer, '/answer')
 api.add_resource(Question, '/question')
 api.add_resource(AutoQnA, '/auto')
 
-#app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 8080)))
-app.run()
+# Azure Run (Uncomment one of them)
+app.run(host=os.getenv('IP', '0.0.0.0'), port=int(os.getenv('PORT', 80)))
+# Local Run
+#app.run()
