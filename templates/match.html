@@ -14,12 +14,12 @@
 					<div class="col-6 col-12-medium">
 						<!-- Profile -->
 						<div class="card border-success">
-							<img class="card-img-top img-circle" src="images/pic01.jpg" alt="Card image cap">
+							<img class="card-img-top img-circle" src="{{ url_for('static', filename='images/mentor.png') }}" alt="Card image cap">
 							<div class="card-body text-success">
-							<h3 class="card-title"><strong>Susan Tang</strong></h3>
-							<p class="card-text">Title: <strong>Doctor</strong></p>
-							<p class="card-text">University: <strong>Fujian university</strong></p>
-							<p class="card-text">Peronalities match:</p>
+							<h3 class="card-title"><strong>Kelly Cheng</strong></h3>
+							<p class="card-text">Title: <strong>Lawyer</strong></p>
+							<p class="card-text">University: <strong>The University of Hong Kong</strong></p>
+							<p class="card-text">Personalities match:</p>
 							<div class="progress">
 								<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
 							</div>
@@ -28,7 +28,7 @@
 								<li>Joined <span class="badge badge-success">Astronomical Society</span></li>
 								<li>Joined <span class="badge badge-info">DreamCatchers MedTech Hackathon</span></li>
 							</ul>
-							<a href="#" class="btn btn-primary text-center">TALK</a>
+							<a href="{{ url_for('chat') }}" class="btn btn-primary text-center">TALK</a>
 							<div class="card-footer">
 								<small class="text-muted">Last updated 1 week ago</small>
 							</div>

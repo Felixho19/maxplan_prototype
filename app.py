@@ -41,9 +41,12 @@ def login():
     return render_template('login.html', form=form)
 
 # Render the Signup page
-@app.route("/signup")
+@app.route("/signup", methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST':
+        return redirect(url_for('login'))
     return render_template('signup.html')
+
 
 # Render the Soc page
 @app.route("/soc")
