@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block body %}
+<!-- Highlights -->
+	<section class="wrapper" id = "top">
+		<div class="inner">
+			<header class="special">
+				<h2>Kelie Cheng</h2>
+				<p>Graph below is generated base on your personality:</p>
+			</header>
+			<div class="highlights">
+				  <div>
+					<div class="card">
+					  <div class="card-header">
+						<i class="fas fa-chart-bar"></i>
+						Top 6 High School Subjects For You</div>
+					  <div class="card-body">
+						<canvas id="myBarChart" width="100%"></canvas>
+					  </div>
+
+					</div>
+				   </div>
+
+				  <div>
+					<div class="card">
+					  <div class="card-header">
+						<i class="fas fa-chart-bar"></i>
+						Top 6 University Discipline For You</div>
+						  <div class="card-body">
+							<canvas id="myBarChart2" width="100%"></canvas>
+						  </div>
+
+						</div>
+					</div>
+					<div>
+						<div class="card">
+						  <div class="card-header">
+							<i class="fas fa-chart-bar"></i>
+							Top 6 Careers For You</div>
+							  <div class="card-body">
+								<canvas id="myBarChart3" width="100%"></canvas>
+							  </div>
+						</div>
+					</div>
+
+					<ul class="actions fit">
+						<li><a href="#cta" class="button primary fit" style = "background-color: #437F97">University Discipline Advise</a></li>
+						<li><a href="#job" class="button primary fit" style = "background-color: #A83552">Career Advise</a></li>
+					</ul>
+
+				   </div>
+				</div>
+	</section>
+	<section id="cta" class="wrapper">
+		<div class="inner">
+			<h2>Your recommended university discipline - Law</h2>
+			<br>
+			<div class = "row">
+				<div class="col-6 col-12-medium">
+					<a href=><img src="{{ url_for('static', filename='images/uni-iogo.jpg') }}" style="max-width: calc(100% - 6rem);"></a>
+							<!-- Text -->
+							<h3>What Is the Law System in Hong Kong?</h3>
+
+							The legal system in Hong Kong uses a constitution that provides for the basic laws of the country. It uses the principle of "one country, two systems." It is a type of legal system that is based on English common law, but there is also a significant amount of local legislation in place here. The Laws of Hong Kong is different from the laws in place in China, though. Unlike China, Hong Kong uses a law system similar to that found in England and Wales.
+
+							The most common professions in law in Hong Kong are barristers, practicing solicitors, local law firm employees, and registered foreign lawyers. The Law Society of Hong Kong and the Hong Kong Bar Association are the main legal bodies in the country for solicitors and barristers.
+
+				</div>
+				<div class="col-6 col-12-medium">
+							<!-- Text -->
+							<h3>
+								How to study law in Hong Kong?</h3>
+
+							The legal system in Hong Kong uses a constitution that provides for the basic laws of the country. It uses the principle of "one country, two systems." It is a type of legal system that is based on English common law, but there is also a significant amount of local legislation in place here. The Laws of Hong Kong is different from the laws in place in China, though. Unlike China, Hong Kong uses a law system similar to that found in England and Wales.
+
+							The most common professions in law in Hong Kong are barristers, practicing solicitors, local law firm employees, and registered foreign lawyers. The Law Society of Hong Kong and the Hong Kong Bar Association are the main legal bodies in the country for solicitors and barristers.
+
+
+						</div>
+			</div>
+			<br>
+			<a href="#top" class="button primary fit" style = "color:white !important;background-color: #A83552">Back to TOP</a>
+
+		</div>
+	</section>
+	<section class="wrapper" id="job">
+		<div class="inner">
+			<header class="special" style="">
+				<h2>You would be like a/an: <b>International Firm Lawyer</b></h2>
+
+			</header>
+
+			<div class = "row">
+				<div class="col-6 col-12-medium">
+					<a href="{{ url_for('soc') }}"><img src="{{ url_for('static', filename='images/soc.jpg') }}" style="max-width: calc(100% - 6rem);"></a>
+							<!-- Text -->
+							<br>
+							<br>
+								<h3>Reminder</h3>
+								<p>Application Deadline for Firm A Vacation Scheme and Training contract 2020 is approaching! Apply before <b>1 January 2019</b>.</p>
+
+							<!-- Lists -->
+								<h3>List of International Firms</h3>
+								<div class="col-6 col-12-medium" >
+										<ul>
+											<li>Baker & McKenzie</li>
+											<li>Clifford Chance</li>
+											<li>Linklaters</li>
+											<li>DLA Piper</li>
+											<li><a href="#">More</a></li>
+										</ul>
+								</div>
+
+				</div>
+				<div class="col-6 col-12-medium">
+							<!-- Text -->
+								<h3>Preferrable Experience from Pass Candidates</h3>
+										<ol>
+											<li>Internship Experience
+												<ul>
+													<li>Local Firm A</li>
+													<li>Securities and Futures Commission</li>
+													<li>Banking Compliance</li>
+												</ul>
+											</li>
+											<li>Experienced in Mooting Competition</li>
+											<li>GPA > 3.3</li>
+										</ol>
+
+							<!-- Lists -->
+							<br>
+								<h3>According to your profile, your next step to achieve your goal can be: </h3>
+								<br>
+								<ul class = "alt">
+									<li>
+										<b>Apply for Vacation Scheme</b><br>
+										<div> - <a href = "#">Tips for excelling in vacation scheme</a><br></div>
+										<div> - <a href = "#">Link to application of Firm A</a></div>
+									</li>
+									<li>
+										<b>Apply for Mooting Competition</b>
+										<div> - <a href = "#">More About Mooting Competition</a><br></div>
+									</li>
+									<li>
+										<b>Apply for Mentorship Scheme</b>
+										<div> - <a href = "#">HKU Law Mentorship</a><br></div>
+										<div> - <a href = "#">MaxPlan Mentorship</a><br></div>
+									</li>
+								</ul>
+						</div>
+			</div>
+			<br>
+			<a href="#top" class="button primary fit" style = "color:white !important;background-color: #A83552">Back to TOP</a>
+
+		</div>
+	</section>
+	<script src="{{ url_for('static', filename='assets/js/chart.js/Chart.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/sb-admin.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/chart-pie-demo.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/chart-bar-demo.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/chart-bar-demo2.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/chart-bar-demo3.js') }}"></script>
+	<script src="{{ url_for('static', filename='assets/js/chart-area-demo.js') }}"></script>
+
+{% endblock %}

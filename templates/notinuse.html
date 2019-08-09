@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container-fluid h-100">
+  <div class="row justify-content-center h-100">
+    <div class="col-md-6 col-lg-3 h-100">
+
+      <!-- Card -->
+      <div class="card card-personal" style="background-color:white">
+
+        <!-- Card image-->
+        <img class="card-img-top" src="{{url_for('static', filename='img/custom/home_icon.jpg')}}" alt="Card image cap">
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one">AI Consultant</h4>
+          </a>
+          <p class="card-meta"></p>
+          <!-- Text -->
+          <h3 class="card-text">Make an Informed Decision, Empower the Legal Vision</h3>
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!-- Grid column -->
+    <div class="col-md-8 col-xl- chat">
+        <div class="card">
+            
+            <div class="card-header msg_head">
+                <div class="d-flex bd-highlight">
+                    <div class="img_cont">
+                        <img src="{{url_for('static', filename='img/custom/icon.png') }}" class="rounded-circle user_img">
+                        <span class="online_icon"></span>
+                    </div>
+                    <div class="user_info">
+                        <span>Chat with SolvenCross</span>
+                        <p>Beta</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="chatting" class="card-body msg_card_body">
+                
+                <div class="d-flex justify-content-start mb-4">
+                    <div class="img_cont_msg">
+                        <img src="{{url_for('static', filename='img/custom/icon.png') }}" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                        Hi, SolvenCross here. What can I help?
+                        <span class="msg_time">Today</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                    </div>
+                    <textarea id="user_msg" name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                    <div class="input-group-append">
+                        <span class="input-group-text send_btn" onClick="answerByUser();"><i class="fas fa-location-arrow"></i></span>
+                        <span id="loading" class="input-group-text" style="display:none;background-color: rgba(0,0,0,.03);"><div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="side-widget open">
+  <div class="inner">
+    <a class="btn btn-red productCheckout" id="get-started">Ask for help</a>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<div id="popup-container">
+  <div id="popup-window">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>  
+      <a href="#" class="your-class"></a>
+      <div>
+        <div class="row text-center">
+          <h1>I need help!</h1>
+          <hr>
+          <p>Fill out the form if you have question</p>
+        </div>
+        <br>
+        <form action="" method="post" id="footer-form">
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control" name="first_name" id="first_name" placeholder="First Name *" required>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" name="last_name" id="last_name" placeholder="Last Name *" required>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control" name="email" id="email" placeholder="Your Email *"required>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" name="phone" placeholder="Phone *" id="phone">
+              <br>
+            </div>
+          </div>
+          <center>
+            <input type="submit" class="btn btn-primary" value="Submit">
+          </center>
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(){
+    $("#user_msg").keypress(function( event ) {
+    if ( event.which == 13 ) {
+        answerByUser();
+    }
+    });
+});
+</script>
+<script type="text/javascript">
+   function myFunction() {
+        var x = document.getElementById("loading");
+    if (x.style.display === "none") {
+    x.style.display = "block";
+     } else {
+    x.style.display = "none";
+    }
+    }
+    
+    function answerByUser() {
+        try {
+            var userMsgText = document.getElementById("user_msg").value;
+
+            var xmlhttp = new XMLHttpRequest();            
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //alert(this.responseText);
+                    var responseJson = JSON.parse(this.responseText); 
+                    document.getElementById("chatting").innerHTML += 
+                        "<div class=\"d-flex justify-content-end mb-4\">" + 
+                            "<div class=\"msg_cotainer_send\">"+
+                                responseJson["answer"]+
+                                "<span class=\"msg_time\">Today</span>"+
+                            "</div>"+
+                            "<div class=\"img_cont_msg\">"+
+                                "<img src=\"{{url_for('static',filename='img/custom/send_icon.jpeg')}}\" class=\"rounded-circle user_img_msg\">"+
+                           "</div>"+
+                        "</div>";
+                    document.getElementById("user_msg").value = "";
+                    myFunction() ;
+                }
+            };
+
+            userMsg = { "user_msg":userMsgText };
+            userMsgJson = JSON.stringify(userMsg);
+
+            xmlhttp.open("POST","/api/v1/answer", true);
+            xmlhttp.setRequestHeader("Content-type", "application/json");
+            xmlhttp.send(userMsgJson);
+            myFunction() ;
+        } catch(err) {
+            //error
+        }
+        askNextQuestion();
+    }
+
+    function askNextQuestion() {
+        try {
+            var xmlhttp = new XMLHttpRequest();            
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //alert(this.responseText);
+                    var responseJson = JSON.parse(this.responseText); 
+
+                    if (responseJson["question"] == "") {
+                        appendSubmitButton();
+                    } else {
+                        document.getElementById("chatting").innerHTML += 
+                            "<div class=\"d-flex justify-content-start mb-4\">"+
+                                "<div class=\"img_cont_msg\">"+
+                                    "<img src=\"{{url_for('static', filename='img/custom/icon.png') }}\" class=\"rounded-circle user_img_msg\">"+
+                                "</div>"+
+                                "<div class=\"msg_cotainer\">"+
+                                    responseJson["question"]+
+                                    "<span class=\"msg_time_send\">Today</span>"+
+                                "</div>"+
+                            "</div>";                        
+                    }
+                    document.getElementById("user_msg").value = "";
+                    myFunction() ;
+                }
+            };
+
+            xmlhttp.open("GET", "/api/v1/question", true);
+            xmlhttp.send();
+            myFunction() ;
+        } catch (err) {
+            //error
+        }
+    }
+
+    function appendSubmitButton() {
+        try {
+            document.getElementById("chatting").innerHTML += 
+                "<div class=\"d-flex justify-content-start mb-4\">"+
+                    "<div class=\"img_cont_msg\">"+
+                            "<img src=\"{{url_for('static', filename='img/custom/icon.png') }}\" class=\"rounded-circle user_img_msg\">"+
+                        "</div>"+
+                    "<div class=\"msg_cotainer\">"+
+                        "It looks like we have collected enough information. Click the button to see the brief analysis:"+
+                        "<button onclick=\"location.href='{{url_for('summary')}}'\" class=\"btn btn-default waves-effect waves-light\">"+
+                            "Click here" +
+                        "</button>";
+                        "<span class=\"msg_time_send\">Today</span>"+
+                    "</div>"+
+                    "</div>";
+        } catch (err) {
+            //error
+        }
+    }
+
+    function autoType(stringToType) {
+        try {
+            for (var i = 0; i < stringToType.length; i++) {
+                document.getElementById("user_msg").innerHTML += stringToType.charAt(i);
+                new Promise((resolve) => setTimeout(resolve, 500));              
+            }
+        } catch (err) {
+            //error
+        }
+    }
+
+    var answers_index = 0;
+    var answers = ["I need help in marriage...", "Hong Kong",
+"Yes, I do.",
+"Yes, we both do.",
+"Yes, we both do.",
+"15 years.",
+"No",
+"We are still cohabiting, ",
+"No",
+"I discovered through private investigation that my husband have been having a mistress for two years. He did not admit that but our relationships deteriorated quickly. We separated one year ago.\n\nBut I really can’t live without my son. Can I get his custody?",
+"I have a son.",
+"I’m 48 years old and my son is 12 years old. My husband is 52 years old.",
+"My husband is an accountant. I used to be a nurse, but then i quitted to take care of my son at home. I’m now a housewife.",
+"Of course I am. I’m his mother! I’m the one who does the chores, find a good school for him, and take him to interests classes. My husband only lies on the couch and does nothing after work! ",
+"I have no income and my husband told me he earns roughly $60,000. Would that mean he can have my son because he earns more? ",
+"I’m healthy. ",
+"He has Type 2 diabetes. But the doctor said his condition is not so serious at the moment. ",
+"I really want to stay in the flat where we’ve been living because it’s close to my son’s school and near some prestigious secondary schools. Do you think we need to move?  ",
+"Yes. ",
+"Then I think I’ll just rent another flat nearby. But my husband does not have another property either. ",
+"I have not told him about this yet. He’s just a boy. How can he cope with this kind of things? Also, my husband and I have really long working hours, which leave both of us little time to spend with my son. ",
+"My husband rarely spends time with my son because he would just go to bed as soon as he came home at late night.\n\nMy son used to be very clingy to me when he was a kid. However, perhaps it is because he’s in his rebellious age, we sometimes run into arguments about how he should tidy his room. Other than that, I think we’re on good terms. He even made me a thank-you card on Mother’s Day this year!",
+"I am a Christian, that’s why I’ve arranged my son to study at a Christian primary school. But he never goes to church and does not believe in Jesus. My husband is atheist. ",
+"No. We have separate bank accounts.",
+"We jointly own the flat we are living in.",
+"I own no properties other than my home. I have $100,000 in my own bank account.",
+"He has $5,000,000 in his bank account.",
+"I do not have any debts.",
+"No.",
+"No, I’m loyal to my husband. I believe he’s having an affair but … .",
+"We’re leading a middle-class life. We can afford to pay our son’s extra-curricular activities. We do not have to worry about living expenses at all.",
+"My husband is responsible for these expenses.",
+"I pay my son’s school fee, which is $10,000 per year.\n\nAlso, he has to attend 2 tutorial classes and 1 instrument lesson. I pay all the expenses, nearly $5,000 per month.",
+"I pay all daily expenses to relieve my husband of the burden of paying the mortgage.",
+"We purchased it.",
+"It’s held under our joint name. ",
+"I have paid the down payment in a lump sum from my bank account. ",
+"The mortgage has been fully repaid, but it is my husband who made the repayment. "]
+
+    function autoQnA() {
+        try {
+            if (answers_index < answers.length) {
+                document.getElementById("user_msg").innerHTML = answers[answers_index];
+                answerByUser();
+            } 
+            answers_index = answers_index + 1;
+        } catch (err) {
+            //error
+        }
+    }
+
+    function autoQnA_1() {
+        try {
+            document.getElementById("user_msg").innerHTML = "I need help in marriage...";
+            answerByUser();
+        } catch (err) {
+            //error
+        }
+    }
+</script>
+{% endblock %}

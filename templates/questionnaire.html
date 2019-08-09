@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+		<!-- Highlights -->
+			<section class="wrapper">
+				<div class="inner">
+					<header class="special">
+						<h2>Career Direction Test</h2>
+						We envision a future where all youngsters in Hong Kong have a better life-planning so as to equip themselves sufficiently, realise their potential fully and pursue their dream successfully.
+					</header>
+					<div class="highlights">
+						<div class="content" style = 'width:100%; text-align: left;'>
+							<div>
+								<h3 class="special"><b>I make friends easily </b></h3>
+								<div class="col-4 col-12-small">
+									<input type="radio" id="radio-alpha" name="radio" checked="">
+									<label for="radio-alpha">Yes</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="radio" id="radio-beta" name="radio" checked="">
+									<label for="radio-beta">No</label>
+								</div>
+							</div>
+							<br>
+							<br>
+							<div>
+								<h3 class="special"><b>Which of the following subjects do you like?(Can choose more than one)</b></h3>
+
+								<div class="col-4 col-12-small">
+									<input type="checkbox" id="checkbox-beta" name="checkbox" checked="">
+									<label for="checkbox-beta">Chinese/English Language</label>
+								</div>
+								
+								<div class="col-4 col-12-small">
+									<input type="checkbox" id="checkbox-alpha" name="checkbox" checked="">
+									<label for="checkbox-alpha">Mathematics</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="checkbox" id="checkbox-gammar" name="checkbox" checked="">
+									<label for="checkbox-gammar">Science</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="checkbox" id="checkbox-23" name="checkbox" checked="">
+									<label for="checkbox-23">Geography</label>
+								</div>
+								<div class="col-4 col-12-small">
+									<input type="checkbox" id="checkbox-12" name="checkbox" checked="">
+									<label for="checkbox-12">History</label>
+								</div>
+							</div>
+							<br>
+							<br>
+							<div>
+								<h3 class="special"><b>Tell us anything that can desctibe yourselve...</b></h3>
+								<div class="col-4 col-12-small">
+									<textarea name="textarea" id="textarea" placeholder="Your Answer" rows="6"></textarea>
+								</div>
+							</div>
+							<br>
+							<br>
+							<center><a href = "./candidate_analysis.html"><input type="submit" value="Submit Form" class="primary"></a></center>
+						</div>
+					</div>
+				</div>
+			</section>
+{% endblock %}
